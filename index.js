@@ -64,7 +64,7 @@ keyboardKeys = [
     ],
     [
         ["ctrl", "Ctrl", 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
-        ["win", 'Win', 'Win', 'Win', 'Win', 'Win'],
+        ["win", '⊞', '⊞', '⊞', '⊞', '⊞'],
         ["alt", "Alt", "Alt", 'Alt', 'Alt', 'Alt'],
         ["space", "Space", " ", " ", '', ''],
         ["alt", "Alt", "Alt", 'Alt', 'Alt', 'Alt'],

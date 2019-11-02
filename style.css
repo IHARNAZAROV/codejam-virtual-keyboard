@@ -1,0 +1,112 @@
+.wrapper {
+    margin: 0 auto;
+
+}
+
+.keyboard {
+    width: 700px;
+    margin: 0 auto;
+    border-radius: 10px 10px 4px 4px;
+    box-shadow: 0px 5px 0px 0px darken(#d5d9dc, 50%);
+
+}
+
+.keyboard .row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+.keyboard .key {
+    display: inline-block;
+    position: relative;
+    background: #333;
+    text-align: center;
+    color: #eee;
+    border-radius: 0.3em;
+    margin: 0.2em;
+    padding: 0.2em;
+    width: 3em;
+    height: 3em;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    border: 0.063em solid #444;
+    -webkit-box-shadow: 0 0.2em 0 0.05em #222;
+    box-shadow: 0 0.2em 0 0.05em #222;
+    border-bottom-color: #555;
+    font-family: Arial, Helvetica, sans-serif;
+
+    line-height: 1.2;
+}
+
+.keyboard .key:hover {
+    background: #df0404;
+}
+
+.keyboard .key:active {
+    border-color: red;
+    border-bottom-color: red;
+    background: red;
+    color: #fff;
+    position: relative;
+    top: 0.2em;
+    -webkit-box-shadow: 0 0 0 0.05em red;
+    box-shadow: 0 0 0 0.05em red;
+    z-index: 100;
+}
+
+.keyboard .backspace,
+.keyboard .capslock,
+.keyboard .shift,
+.keyboard .enter {
+    width: 90px;
+}
+
+.keyboard .alt,
+.keyboard .arrow,
+.keyboard .backspace,
+.keyboard .capslock,
+.keyboard .ctrl,
+.keyboard .del,
+.keyboard .enter,
+.keyboard .shift,
+.keyboard .shift-right,
+.keyboard .tab,
+.keyboard .win {
+    font-size: 14px;
+    font-weight: 600;
+    color: #808080;
+
+    background-color: #0b0818;
+}
+
+
+.keyboard .space {
+    background-color: #0b0818;
+    width: 24em;
+}
+
+.keyboard sup {
+    position: absolute;
+    margin: -10px 0 0 -20px;
+    font-size: 12px;
+}
+
+.textarea {
+    display: block;
+    width: 700px;
+    height: 100px;
+    margin: 0 auto 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: #444;
+    resize: none;
+}
+
+.off,
+.up {
+    display: none;
+}

@@ -13,5 +13,9 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "linebreak-style": 0,
+        'no-plusplus': 'off',
+        'max-len': ["error", { "code": 120 }],
+        "prefer-destructuring": ["error", {"object": true, "array": false}]
     }
 };

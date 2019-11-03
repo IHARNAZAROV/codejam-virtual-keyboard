@@ -76,99 +76,208 @@ keyboardKeys = [
 ];
 
 // Creating keyboard div container
-let keys = [
-    ["Backquote", "Digit1", "Minus", "Equal", "Backspace"]
-];
-let form = document.createElement("form");
+
+let form = document.createElement("div");
 form.className = "wrapper";
 document.body.append(form);
 let keyboard = document.createElement("div");
 keyboard.className = "keyboard";
 form.append(keyboard);
 
-// Creating textaree 
-let textarea = document.createElement("textarea");
-textarea.className = "textarea";
-form.append(textarea);
-textarea.setAttribute("type", "textarea");
+
+// Creating textarea
+
+let textArea = document.createElement("textarea");
+textArea.className = "textarea";
+form.append(textArea);
+textArea.setAttribute("type", "textarea");
 
 //KeyboardLanguage changing
 
-let lang = localStorage.getItem('virtualKeyboardLang');
-if (lang === null) {
-    localStorage.setItem('virtualKeyboardLang', 'en');
+if (localStorage.getItem("virtualKeyboardLang") === null) {
+  localStorage.setItem("virtualKeyboardLang", "en");
 }
-document.addEventListener('keydown', function (evt) {
-    if (evt.shiftKey && evt.altKey) {
-        (lan === 'en') ? localStorage.setItem('virtualKeyboardLang', 'ru'): localStorage.setItem('virtualKeyboardLang', 'en');
-        location.reload();
+
+document.addEventListener("keydown", function(evt) {
+  if (evt.shiftKey && evt.altKey) {
+    if (localStorage.getItem("virtualKeyboardLang") === "en") {
+      localStorage.removeItem("virtualKeyboardLang");
+      localStorage.setItem("virtualKeyboardLang", "ru");
+    } else if (localStorage.getItem("virtualKeyboardLang") === "ru") {
+      localStorage.removeItem("virtualKeyboardLang");
+      localStorage.setItem("virtualKeyboardLang", "en");
     }
+    keyboard.querySelectorAll(".row").forEach(row => {
+      row.querySelectorAll(".key").forEach(key => {
+        let on = key.querySelector(".on");
+        let off = key.querySelector(".off");
+        on.classList.remove("on");
+        on.classList.add("off");
+        off.classList.remove("off");
+        off.classList.add("on");
+      });
+    });
+  }
 });
+
+// Creating buttons
 
 let rowNumbers = [14, 15, 13, 13, 9];
-for (let i = 0; i < 6; i++) {
-    var row = document.createElement("div");
-    row.className = "row";
-    keyboard.append(row);
+for (let i = 0; i < 5; i++) {
+  var row = document.createElement("div");
+  row.className = "row";
+  keyboard.append(row);
 
-    for (let j = 0; j < rowNumbers[i]; j++) {
-        let key = document.createElement("button");
-        key.className = "key " + keyboardKeys[i][j][0];
-        row.append(key);
+  for (let j = 0; j < rowNumbers[i]; j++) {
+    var key = document.createElement("button");
+    key.className = "key " + keyboardKeys[i][j][0];
+    row.append(key);
 
-        let spanEn = document.createElement("span");
-        let spanEnUp = document.createElement("span");
-        let spanEnDown = document.createElement("span");
-        let spanRu = document.createElement("span");
-        let spanRuUp = document.createElement("span");
-        let spanRuDown = document.createElement("span");
+    let spanEn = document.createElement("span");
+    let spanEnUp = document.createElement("span");
+    let spanEnDown = document.createElement("span");
+    let spanRu = document.createElement("span");
+    let spanRuUp = document.createElement("span");
+    let spanRuDown = document.createElement("span");
 
-        let [langOn, langOff] = [' on', ' off'];
-        if (lang == 'en') {
-            langOn = ' on';
-            langOff = ' off';
-        } else {
-            langOn = ' off';
-            langOff = ' on';
-        }
-        spanEn.className = keyboardKeys[i][j][1] + langOn;
-        spanRu.className = keyboardKeys[i][j][1] + langOff;
-
-        key.append(spanEn);
-        key.append(spanRu);
-
-        spanRuDown.className = 'case down';
-        spanRu.append(spanRuDown);
-        spanRuDown.insertAdjacentText("afterbegin", keyboardKeys[i][j][2]);
-
-        spanRuUp.className = 'case up';
-        spanRu.append(spanRuUp);
-        spanRuUp.insertAdjacentText("afterbegin", keyboardKeys[i][j][3]);
-
-
-        spanEnDown.className = 'case down';
-        spanEn.append(spanEnDown);
-        spanEnDown.insertAdjacentText("afterbegin", keyboardKeys[i][j][4]);
-
-        spanEnUp.className = 'case up';
-        spanEn.append(spanEnUp);
-        spanEnUp.insertAdjacentText("afterbegin", keyboardKeys[i][j][5]);
+    let [langOn, langOff] = [" on", " off"];
+    if (localStorage.getItem("virtualKeyboardLang") === "en") {
+      langOn = " on";
+      langOff = " off";
+    } else {
+      langOn = " off";
+      langOff = " on";
     }
+    spanEn.className = keyboardKeys[i][j][1] + langOn;
+    spanRu.className = keyboardKeys[i][j][1] + langOff;
+
+    key.append(spanEn);
+    key.append(spanRu);
+
+    spanRuDown.className = "case-shown";
+    spanRu.append(spanRuDown);
+    spanRuDown.insertAdjacentText("afterbegin", keyboardKeys[i][j][2]);
+
+    spanRuUp.className = "case-hidden";
+    spanRu.append(spanRuUp);
+    spanRuUp.insertAdjacentText("afterbegin", keyboardKeys[i][j][3]);
+
+    spanEnDown.className = "case-shown";
+    spanEn.append(spanEnDown);
+    spanEnDown.insertAdjacentText("afterbegin", keyboardKeys[i][j][4]);
+
+    spanEnUp.className = "case-hidden";
+    spanEn.append(spanEnUp);
+    spanEnUp.insertAdjacentText("afterbegin", keyboardKeys[i][j][5]);
+  }
 }
 
-keyboard.addEventListener('click', function (evt) {
-    let targetBtn = evt.target.closest('button');
-    console.dir(targetBtn);
+//Display symbols
 
-    targetLang = targetBtn.querySelector('.on');
-    console.log(targetLang.className.split(' ')[0]);
+let shiftPress = false;
+let caps = false;
 
-    keyboardKeys.forEach(row => {
-        row.forEach(el => {
-            if (el == targetLang.className.split(' ')[0]) {
+function caseUp() {
+  shiftPress = true;
+  
+// Changing case view in index.html to Uppercase
 
-                console.dir('el =', el);
-            }
-        });
+  document.querySelectorAll(".on").forEach(key => {
+    key.children[0].classList.remove("case-shown");
+    key.children[0].classList.add("case-hidden");
+    key.children[1].classList.add("case-shown");
+    key.children[1].classList.remove("case-hidden");
+  });
+}
+
+// Changing case view in index.html to undercase
+
+function caseDown() {
+  shiftPress = false;
+  document.querySelectorAll(".on").forEach(key => {
+    key.children[0].classList.add("case-shown");
+    key.children[0].classList.remove("case-hidden");
+    key.children[1].classList.remove("case-shown");
+    key.children[1].classList.add("case-hidden");
+  });
+}
+
+function shiftUpKeyboard(evt) {
+  if (evt.shiftKey) {
+    caseUp();
+  }
+}
+
+function shiftDownKeyboard() {
+  shiftPress = false;
+  caseDown();
+}
+
+function printingInTextArea(evt) {
+  let symbol = "";
+  let targetBtn = evt.target.closest("button");
+  targetSpan = targetBtn.querySelector(".on");
+  let targetBtnName = targetSpan.className.split(" ")[0];
+  let specialBtn = targetBtn.classList[1];
+  
+
+// Finding pressed symbol
+
+  keyboardKeys.forEach(row => {
+    row.forEach(el => {
+      if (el[1] === targetBtnName &&
+          targetBtnName !== "Delete" &&
+          targetBtnName !== "Backspace" &&
+          targetBtnName !== "CapsLock") {
+        if (localStorage.getItem("virtualKeyboardLang") === "ru") {
+          shiftPress ? (symbol = el[3]) : (symbol = el[2]);
+        } else shiftPress ? (symbol = el[5]) : (symbol = el[4]);
+      }
     });
-});
+  });
+
+  if (specialBtn === "tab") {
+    symbol = "  ";
+  }
+
+  if (specialBtn === "enter") {
+    symbol = "\n";
+  }
+
+// Adding symbol to textArea
+
+  textArea.setRangeText(symbol, textArea.selectionStart, textArea.selectionEnd, "end" );
+
+  if (specialBtn === "backspace") {
+    if (textArea.selectionStart > 0) {
+      let pos = textArea.selectionStart;
+      textArea.value = textArea.value.slice(0, pos - 1) + textArea.value.slice(pos, textArea.value.length);
+      textArea.setRangeText("", pos - 1, pos - 1, "end");
+    }
+  }
+
+  if (specialBtn === "del") {
+    let pos = textArea.selectionStart;
+    if (textArea.selectionStart <= textArea.value.length) {
+      textArea.value = textArea.value.slice(0, pos) + textArea.value.slice( pos + 1, textArea.value.length );
+      textArea.setRangeText("", pos, pos, "end");
+    }
+  }
+
+  if (specialBtn === 'capslock') {
+    let capsBtn = document.querySelector('.capslock');
+    if (caps === true) {
+      capsBtn.classList.add('active');
+      caseUp();
+    } else {
+      capsBtn.classList.remove('active');
+      caseDown();
+    }    
+    caps = !caps;
+  }
+  textArea.focus();
+}
+
+document.addEventListener("keydown", shiftUpKeyboard);
+keyboard.addEventListener("click", printingInTextArea);
+document.addEventListener("keyup", shiftDownKeyboard);

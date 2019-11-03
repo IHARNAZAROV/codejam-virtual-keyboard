@@ -50,7 +50,7 @@ const keyboardKeys = [
     ['enter', 'Enter', 'Enter', 'Enter', 'Enter', 'Enter'],
   ],
   [
-    ['shift', 'Shift', 'Shift', 'Shift', 'Shift', 'Shift'],
+    ['shift-left', 'ShiftLeft', 'Shift', 'Shift', 'Shift', 'Shift'],
     ['', 'KeyZ', 'я', 'Я', 'z', 'Z'],
     ['', 'KeyX', 'ч', 'Ч', 'x', 'X'],
     ['', 'KeyC', 'с', 'С', 'c', 'C'],
@@ -62,10 +62,10 @@ const keyboardKeys = [
     ['', 'Period', 'ю', 'Ю', ',', '>'],
     ['', 'Slash', '.', ',', '/', '?'],
     ['', 'ArrowUp', '↑', '↑', '↑', '↑'],
-    ['shift', 'Shift', 'Shift', 'Shift', 'Shift', 'Shift'],
+    ['shift-left', 'ShiftLeft', 'Shift', 'Shift', 'Shift', 'Shift'],
   ],
   [
-    ['ctrl', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
+    ['ctrl-left', 'ControlLeft', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
     ['win', '⊞', '⊞', '⊞', '⊞', '⊞'],
     ['alt', 'Alt', 'Alt', 'Alt', 'Alt', 'Alt'],
     ['space', 'Space', ' ', ' ', '', ''],
@@ -73,7 +73,7 @@ const keyboardKeys = [
     ['', 'ArrowLeft', '←', '←', '←', '←'],
     ['', 'ArrowDown', '↓', '↓', '↓', '↓'],
     ['', 'ArrowRight', '→', '→', '→', '→'],
-    ['ctrl', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
+    ['ctrl-right', 'ControlRight', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
   ],
 ];
 
@@ -247,7 +247,7 @@ function printingInTextArea(evt) {
     symbol = '\n';
   }
 
-  // Adding symbol to textArea
+  // Adding symbol to textarea
 
   textArea.setRangeText(symbol, textArea.selectionStart, textArea.selectionEnd, 'end');
 
@@ -284,3 +284,9 @@ function printingInTextArea(evt) {
 document.addEventListener('keydown', shiftUpKeyboard);
 keyboard.addEventListener('click', printingInTextArea);
 document.addEventListener('keyup', shiftDownKeyboard);
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.shiftKey && evt.altKey) pageLangChanging();
+});
+pageLangBtn.addEventListener('click', pageLangChanging);
+

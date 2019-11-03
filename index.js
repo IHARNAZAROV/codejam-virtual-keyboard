@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-// eslint-disable-next-line no-undef
+
 const keyboardKeys = [
   [
     ['', 'Backquote', 'ё', 'Ё', '`', '~'],
@@ -232,6 +232,7 @@ function printingInTextArea(evt) {
                 && targetBtnName !== 'Backspace'
                 && targetBtnName !== 'CapsLock') {
         if (localStorage.getItem('virtualKeyboardLang') === 'ru') {
+          // eslint-disable-next-line no-unused-expressions
           shiftPress ? (symbol = el[3]) : (symbol = el[2]);
         } else shiftPress ? (symbol = el[5]) : (symbol = el[4]);
       }

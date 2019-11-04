@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-case-declarations */
 const keyboard = {
   elements: {
     main: null,
@@ -36,7 +38,7 @@ const keyboard = {
     document.body.appendChild(this.elements.main);
   },
 
-  // eslint-disable-next-line no-underscore-dangle
+
   _createKeys(isRussian) {
     const fragment = document.createDocumentFragment();
     // en | ru | code
@@ -107,6 +109,7 @@ const keyboard = {
       // Add attributes/classes
       keyElement.setAttribute('type', 'button');
       keyElement.classList.add('keyboard__key');
+
       // Every button have date attribute(with code)
       keyElement.setAttribute('data-key', `${key[2]}`);
 
@@ -190,13 +193,11 @@ const keyboard = {
 
         default:
 
-          // eslint-disable-next-line no-case-declarations
+
           let lenguageLetter;
           if (!isRussian) {
-            // eslint-disable-next-line prefer-destructuring
             lenguageLetter = key[0];
           } else {
-            // eslint-disable-next-line prefer-destructuring
             lenguageLetter = key[1];
           }
 
@@ -243,7 +244,6 @@ const keyboard = {
   },
 };
 
-// ===================================================== work with real keyboard
 
 document.addEventListener('keydown', (event) => {
   // Use date attribute
@@ -251,6 +251,7 @@ document.addEventListener('keydown', (event) => {
   if (event.code === 'CapsLock') {
     keyboard._toggleCapsLock.call(keyboard);
   }
+
   // Resolve default events
   if (event.code === 'Tab' || event.code === 'AltLeft' || event.code === 'AltRight' || event.code === 'ShiftLeft') {
     event.preventDefault();
@@ -280,7 +281,7 @@ function runOnKeys(func, ...codes) {
   document.addEventListener('keydown', (event) => {
     pressed.add(event.code);
 
-    // eslint-disable-next-line no-restricted-syntax
+
     for (const code of codes) {
       if (!pressed.has(code)) {
         return;
@@ -299,6 +300,7 @@ function runOnKeys(func, ...codes) {
 runOnKeys(
   () => {
     keyboard.properties.russian = !keyboard.properties.russian;
+
     // delete old
     document.querySelector('.keyboard').remove();
     keyboard.init();

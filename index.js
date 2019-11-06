@@ -354,10 +354,11 @@ class Keyboard {
 
     runOnKeys(
       () => {
-        this.properties.isRussian = !this.properties.isRussian;
-
-        document.querySelector('.keyboard').remove();
-        this.initVirtual();
+        setTimeout(() => {
+          this.properties.isRrussian = !this.properties.isRrussian;
+          document.querySelector('.keyboard').remove();
+          this.initVirtual();
+        }, 100);
       },
       'ShiftLeft',
       'AltLeft',

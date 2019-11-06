@@ -14,7 +14,7 @@ module.exports = {
     },
     "rules": {
         "no-restricted-syntax": ["warn", "WithStatement"],
-        "no-underscore-dangle": 'off'
+       
       
 
 

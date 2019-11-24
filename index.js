@@ -355,7 +355,7 @@ class Keyboard {
     runOnKeys(
       () => {
         setTimeout(() => {
-          this.properties.isRrussian = !this.properties.isRrussian;
+          this.properties.isRussian = !this.properties.isRussian;
           document.querySelector('.keyboard').remove();
           this.initVirtual();
         }, 100);

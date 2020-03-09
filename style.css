@@ -1,13 +1,21 @@
+@font-face {
+    font-family: 'Literal';
+    src: url('./assets/fonts/Literal.otf');
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
 .keyboard-input {
     width: 60%;
     margin: 3% 20%;
     height: 200px;
     border: 0.063em solid #444;
     outline: none;
-    font-family: 'Poppins';
+    font-family: 'Literal';
     font-size: 40px;
     resize: none;
-    color: #bd063d;
+    color: #1f1235;
 }
 
 .keyboard {
@@ -39,7 +47,7 @@
     -webkit-box-shadow: 0 0.2em 0 0.05em #222;
     box-shadow: 0 0.2em 0 0.05em #222;
     border-bottom-color: #555;
-    font-family: 'Poppins';
+    font-family: 'Literal';
     line-height: 1.2;
     font-size: 0.85em;
 }
@@ -57,7 +65,7 @@
 }
 
 .keyboard-key_service {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     width: 12%;
     background-color: #0b0818;
 }

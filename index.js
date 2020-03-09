@@ -59,7 +59,7 @@ class Keyboard {
       ['z', 'я', 'KeyZ'],
       ['x', 'ч', 'KeyX'],
       ['c', 'с', 'KeyC'],
-      ['v', 'и', 'KeyV'],
+      ['v', 'м', 'KeyV'],
       ['b', 'и', 'KeyB'],
       ['n', 'т', 'KeyN'],
       ['m', 'ь', 'KeyM'],
@@ -108,7 +108,6 @@ class Keyboard {
   createKeys() {
     const fragment = document.createDocumentFragment();
 
-
     this.keyLayout.forEach((key) => {
       const keyElement = document.createElement('button');
       const insertLineBreak = ['Backspace', '\\', 'Enter', '/'].indexOf(key[0]) !== -1;
@@ -124,7 +123,6 @@ class Keyboard {
         case 'Backspace':
           keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Backspace</span>';
-
           keyElement.addEventListener('click', () => {
             this.properties.value = document.querySelector('.keyboard-input').value;
             this.properties.value = this.properties.value
@@ -137,7 +135,6 @@ class Keyboard {
         case 'Tab':
           keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Tab</span>';
-
           keyElement.addEventListener('click', () => {
             this.properties.value = document.querySelector('.keyboard-input').value;
             this.properties.value += '\t';
@@ -149,7 +146,6 @@ class Keyboard {
         case 'CapsLock':
           keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>CapsLock</span>';
-
           keyElement.addEventListener('click', () => {
             this.toggleCapsLock();
           });
@@ -159,7 +155,6 @@ class Keyboard {
         case 'Enter':
           keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Enter</span>';
-
           keyElement.addEventListener('click', () => {
             this.properties.value = document.querySelector('.keyboard-input').value;
             this.properties.value += '\n';
@@ -189,7 +184,6 @@ class Keyboard {
         case 'Space':
           keyElement.classList.add('keyboard-key_space');
           keyElement.innerHTML = '<span> </span>';
-
           keyElement.addEventListener('click', () => {
             this.properties.value = document.querySelector('.keyboard-input').value;
             this.properties.value += ' ';
@@ -237,7 +231,6 @@ class Keyboard {
 
   toggleCapsLock() {
     this.properties.capsLock = !this.properties.capsLock;
-
     this.elements.keys.forEach((key) => {
       const myKey = key;
       if (myKey.childElementCount === 0) {

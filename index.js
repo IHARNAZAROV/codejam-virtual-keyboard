@@ -88,10 +88,10 @@ class Keyboard {
 
     // Setup main elements
     this.elements.main.classList.add('keyboard');
-    this.elements.keysContainer.classList.add('keyboard__keys');
+    this.elements.keysContainer.classList.add('keyboard-keys');
     this.elements.keysContainer.appendChild(this.createKeys());
 
-    this.elements.keys = this.elements.keysContainer.querySelectorAll('.keyboard__key');
+    this.elements.keys = this.elements.keysContainer.querySelectorAll('.keyboard-key');
 
     // Add to DOM
     this.elements.main.appendChild(this.elements.keysContainer);
@@ -115,14 +115,14 @@ class Keyboard {
 
       // Add attributes/classes
       keyElement.setAttribute('type', 'button');
-      keyElement.classList.add('keyboard__key');
+      keyElement.classList.add('keyboard-key');
 
       // Every button have date attribute(with code)
       keyElement.setAttribute('data-key', `${key[2]}`);
 
       switch (key[0]) {
         case 'Backspace':
-          keyElement.classList.add('keyboard__key_service');
+          keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Backspace</span>';
 
           keyElement.addEventListener('click', () => {
@@ -135,7 +135,7 @@ class Keyboard {
           break;
 
         case 'Tab':
-          keyElement.classList.add('keyboard__key_service');
+          keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Tab</span>';
 
           keyElement.addEventListener('click', () => {
@@ -147,7 +147,7 @@ class Keyboard {
           break;
 
         case 'CapsLock':
-          keyElement.classList.add('keyboard__key_service');
+          keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>CapsLock</span>';
 
           keyElement.addEventListener('click', () => {
@@ -157,7 +157,7 @@ class Keyboard {
           break;
 
         case 'Enter':
-          keyElement.classList.add('keyboard__key_service');
+          keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Enter</span>';
 
           keyElement.addEventListener('click', () => {
@@ -169,25 +169,25 @@ class Keyboard {
           break;
 
         case 'Shift':
-          keyElement.classList.add('keyboard__key_service');
+          keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Shift</span>';
 
           break;
 
         case 'Control':
-          keyElement.classList.add('keyboard__key_service');
+          keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Control</span>';
 
           break;
 
         case 'Alt':
-          keyElement.classList.add('keyboard__key_service');
+          keyElement.classList.add('keyboard-key_service');
           keyElement.innerHTML = '<span>Alt</span>';
 
           break;
 
         case 'Space':
-          keyElement.classList.add('keyboard__key_space');
+          keyElement.classList.add('keyboard-key_space');
           keyElement.innerHTML = '<span> </span>';
 
           keyElement.addEventListener('click', () => {
@@ -258,29 +258,27 @@ class Keyboard {
       event.preventDefault();
       switch (event.code) {
         case 'Backspace':
-          this.properties.value = document.querySelector('.use-keyboard-input').value;
+          this.properties.value = document.querySelector('.keyboard-input').value;
           this.properties.value = this.properties.value
             .slice(0, this.properties.value.length - 1);
-          document.querySelector('.use-keyboard-input').value = this.properties.value;
+          document.querySelector('.keyboard-input').value = this.properties.value;
           break;
 
         case 'Tab':
-          document.querySelector('.use-keyboard-input').value += '\t';
+          document.querySelector('.keyboard-input').value += '\t';
           break;
 
         case 'CapsLock':
           this.toggleCapsLock();
-          key.classList.add('keyboard__key_activeted');
+          key.classList.add('keyboard-key_activeted');
           return;
 
         case 'Enter':
-          document.querySelector('.use-keyboard-input').value += '\n';
-          // keyboard.properties.value = document.querySelector('.use-keyboard-input');
+          document.querySelector('.keyboard-input').value += '\n';
           break;
 
         case 'ShiftLeft':
           this.toggleCapsLock();
-          // key.classList.add('keyboard__key_activeted');
           break;
 
         case 'ControlLeft':
@@ -318,7 +316,7 @@ class Keyboard {
       }
 
 
-      key.classList.add('keyboard__key_activeted');
+      key.classList.add('keyboard-key_activeted');
     });
 
     document.addEventListener('keyup', (event) => {
@@ -326,7 +324,7 @@ class Keyboard {
       if (event.code === 'ShiftLeft') {
         this.toggleCapsLock();
       }
-      key.classList.remove('keyboard__key_activeted');
+      key.classList.remove('keyboard-key_activeted');
     });
 
 

@@ -4,8 +4,10 @@
     height: 200px;
     border: 0.063em solid #444;
     outline: none;
-    font-family: monospace;
-    font-size: 30px;
+    font-family: 'Poppins';
+    font-size: 40px;
+    resize: none;
+    color: #bd063d;
 }
 
 .keyboard {
@@ -15,11 +17,11 @@
     box-shadow: 0px 5px 0px 0px darken(#d5d9dc, 50%);
 }
 
-.keyboard__keys {
+.keyboard-keys {
     text-align: center;
 }
 
-.keyboard__key {
+.keyboard-key {
     display: inline-block;
     position: relative;
     background: #333;
@@ -37,29 +39,30 @@
     -webkit-box-shadow: 0 0.2em 0 0.05em #222;
     box-shadow: 0 0.2em 0 0.05em #222;
     border-bottom-color: #555;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Poppins';
     line-height: 1.2;
+    font-size: 0.85em;
 }
 
-.keyboard__key_activeted {
+.keyboard-key_activeted {
     background: #bd063d;
     box-shadow: inset 2px 2px 10px rgba(13, 16, 61, 0.5),
         inset -2px 2px 10px rgba(13, 16, 61, 0.5);
 }
 
 
-.keyboard__key:active {
+.keyboard-key:active {
     background: #242942;
     border-radius: 12px;
 }
 
-.keyboard__key_service {
+.keyboard-key_service {
     font-size: 0.8rem;
     width: 12%;
     background-color: #0b0818;
 }
 
-.keyboard__key_space {
+.keyboard-key_space {
     background-color: #0b0818;
     width: 24em;
 }
